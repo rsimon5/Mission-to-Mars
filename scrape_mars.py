@@ -40,7 +40,7 @@ def scrape():
     image = browser.find_by_id('full_image')
     image.click()
 
-    time.sleep(10)
+    time.sleep(2)
     link = browser.find_link_by_partial_text('more info')
     link.click()
 
@@ -104,5 +104,10 @@ def scrape():
         List.append(hem_dict)
     
     mars['hemisphere_urls'] = List
+
+
     
     return mars
+
+r = scrape()
+print(r)

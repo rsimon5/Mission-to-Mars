@@ -26,7 +26,7 @@
         <div class='row'>
             <div class="col-lg-8">
                 <h2><strong>Mars Image</strong></h2>  
-                <img src= {{ mars.featured_image_url }} alt="featured_image_url" style="width:720px;height:500px;"/>     
+                <img src= {{ mars.featured_image_url | default('static/images/error.png', true) }} alt="featured_image_url" style="width:720px;height:500px;"/>     
             </div>
             <div class="col-lg-4 text-left">
                 <div class="panel panel-default">
@@ -46,26 +46,32 @@
         <h2 class='text-center'><strong> Mars Hemispheres</strong></h2>
         <hr>
         <div class="row">
-                <div class="col-lg-6 text-right">
-                    <img src= {{ mars.hemisphere_url[0].url }} alt="hemi1" class='borderbox' style="width:400px;height:400px;"/>
-                    <p class='h4 text-center'>{{ mars.hemisphere_url[0].title}}</p>
+            {% for hemisphere in mars.hemisphere_urls %}
+                <div class="col-md-6">
+                    <div class="thumbnail">
+                        <img src= {{hemisphere.img_url | default('static/images/error.png', true) }} alt="hemi1" class='borderbox' style="width:400px;height:400px;"/>
+                        <p class='h4 text-center'>{{ hemisphere.title}}</p>
+                    </div>
+                </div>
+            {% endfor %}
+                <!-- <div class="col-lg-6 text-right">
                 </div>
                 <div class="col-lg-6 text-left">
-                    <img src= {{ mars.hemisphere_url[1].url }} alt="hemi2" class='borderbox' style="width:400px;height:400px;"/>
-                    <p class='h4'>{{ mars.hemisphere_url[0].title }}</p>
-                </div>
+                    <img src= {{mars.hemisphere_urls[1].img_url | default('static/images/error.png', true) }} alt="hemi2" class='borderbox' style="width:400px;height:400px;"/>
+                    <p class='h4'>{{mars.hemisphere_urls[1].title}}</p>
+                </div> -->
         </div>        
-        <div class="row">
+        <!-- <div class="row">
                 <div class="col-lg-6 text-right">
-                    <img src= {{ mars.hemisphere_url[2].url}} alt="hemi3" class='borderbox' style="width:400px;height:400px;"/>
-                    <p class='h4 text-center'>{{ mars.hemisphere_url[0].title }}</p>
+                    <img src={{mars.hemisphere_urls[2].img_url | default('static/images/error.png', true) }} alt="hemi3" class='borderbox' style="width:400px;height:400px;"/>
+                    <p class='h4 text-center'>{{mars.hemisphere_urls[2].title}}</p>
                 </div>
                 <div class="col-lg-6 text-left">
-                    <img src= {{ mars.hemisphere_url[3].url }} alt="hemi4" class='borderbox' style="width:400px;height:400px;"/>
-                    <p class='h4'>{{ mars.hemisphere_url[0].title }}</p>
+                    <img src= {{mars.hemisphere_urls[3].img_url | default('static/images/error.png', true) }} alt="hemi4" class='borderbox' style="width:400px;height:400px;"/>
+                    <p class='h4'>{{mars.hemisphere_urls[3].title}}</p>
                 </div>
         
-        </div> 
+        </div>  -->
     </div>  
 
 </body>
